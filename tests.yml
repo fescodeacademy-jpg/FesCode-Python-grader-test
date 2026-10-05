@@ -1,0 +1,14 @@
+# Runs the tests on GitHub every time you push. The result shows on your
+# commit on GitHub, and your trainer sees it beside the work you hand in.
+name: tests
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - run: pytest -v
